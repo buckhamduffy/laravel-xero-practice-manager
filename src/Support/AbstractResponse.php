@@ -3,6 +3,7 @@
 namespace BuckhamDuffy\LaravelXeroPracticeManager\Support;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Spatie\LaravelData\Data;
 
 abstract class AbstractResponse extends Data
@@ -13,10 +14,14 @@ abstract class AbstractResponse extends Data
 
 	public static function from(mixed ...$payloads): static
 	{
-		$payload = $payloads[0] ?? null;
+		$payload = count($payloads) === 1 ? Arr::first($payloads) : $payloads;
 
 		if (!is_string($payload)) {
-			return parent::from(...$payloads);
+			return parent::from($payloads);
+		}
+
+		if (!Str::startsWith($payload, ['<?xml', '<Resp'])) {
+			return parent::from($payloads);
 		}
 
 		$data = simplexml_load_string($payload);
@@ -42,6 +47,6 @@ abstract class AbstractResponse extends Data
 
 		$data['xml'] = $payload;
 
-		return static::from($data);
+		return parent::from($data);
 	}
 }

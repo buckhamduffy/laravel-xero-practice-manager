@@ -16,8 +16,8 @@ class ClientGroupsResource extends AbstractResource
 		return new ClientGroupUpdateMembersRequest($this->connector, $groupUuid, $add, $remove);
 	}
 
-	public function create(?string $name)
+	public function create(string $name, string $clientUuid)
 	{
-		return new ClientGroupCreateRequest($this->connector, $name);
+		return new ClientGroupCreateRequest($this->connector, $name, $clientUuid);
 	}
 }

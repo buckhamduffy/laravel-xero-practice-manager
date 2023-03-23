@@ -13,7 +13,7 @@ class ClientGroupCreateRequest extends AbstractRequest
 	protected Method $method = Method::POST;
 	protected ?string $responseModel = ClientGroupData::class;
 
-	public function __construct(XeroPracticeManagerConnector $connector, private string $name)
+	public function __construct(XeroPracticeManagerConnector $connector, private string $name, private string $clientUuid)
 	{
 		parent::__construct($connector);
 	}
@@ -26,7 +26,8 @@ class ClientGroupCreateRequest extends AbstractRequest
 	protected function defaultBody(): ?string
 	{
 		return ArrayToXml::convert([
-			'Name' => $this->name,
+			'Name'       => $this->name,
+			'ClientUUID' => $this->clientUuid,
 		], 'Group');
 	}
 }
