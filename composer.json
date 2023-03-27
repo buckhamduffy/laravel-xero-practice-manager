@@ -22,6 +22,7 @@
     "homepage": "https://github.com/buckhamduffy/laravel-xero-practice-manager",
     "require": {
         "php": "^8.2",
+        "ext-simplexml": "*",
         "illuminate/contracts": "^9.0 || ^10.0",
         "sammyjo20/saloon-cache-plugin": "^2.0",
         "sammyjo20/saloon-laravel": "^2.0",

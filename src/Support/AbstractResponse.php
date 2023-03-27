@@ -17,11 +17,11 @@ abstract class AbstractResponse extends Data
 		$payload = count($payloads) === 1 ? Arr::first($payloads) : $payloads;
 
 		if (!is_string($payload)) {
-			return parent::from($payloads);
+			return parent::from(...$payloads);
 		}
 
 		if (!Str::startsWith($payload, ['<?xml', '<Resp'])) {
-			return parent::from($payloads);
+			return parent::from(...$payloads);
 		}
 
 		$data = simplexml_load_string($payload);
@@ -31,9 +31,20 @@ abstract class AbstractResponse extends Data
 			$data = $data[static::$unwrap];
 		}
 
+		$isAssocArray = function(array $array) {
+			foreach ($array as $value) {
+				if (!is_array($value)) {
+					return false;
+				}
+			}
+
+			return true;
+		};
+
 		foreach (static::$relations as $key) {
-			if (is_array($data[$key]) && count($data[$key]) === 1) {
-				$data[$key] = Arr::first($data[$key]);
+			if (array_key_exists($key, $data) && count($data[$key]) === 1) {
+				$relation = Arr::first($data[$key]);
+				$data[$key] = $isAssocArray($relation) ? array_values($relation) : [$relation];
 			}
 		}
 
