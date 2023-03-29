@@ -14,7 +14,10 @@ class ClientCollectionResponse extends AbstractResponse
 	 */
 	#[DataCollectionOf(ClientData::class)]
 	public ?DataCollection $Clients;
+
 	public string $Status;
+
+	public static array $relations = ['Clients'];
 
 	/**
 	 * @return DataCollection<int, ClientData>

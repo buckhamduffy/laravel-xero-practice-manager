@@ -19,7 +19,7 @@
         "enabled": true,
         "actions": [
             {
-                "action": "./vendor/bin/ecs"
+                "action": "./vendor/bin/ecs --fix"
             },
             {
                 "action": "./vendor/bin/phpstan"

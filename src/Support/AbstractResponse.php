@@ -16,6 +16,18 @@ abstract class AbstractResponse extends Data
 	{
 		$payload = count($payloads) === 1 ? Arr::first($payloads) : $payloads;
 
+		if (is_array($payload)) {
+			$payload = array_filter($payload, function($item): bool {
+				if (is_array($item)) {
+					return $item !== [];
+				}
+
+				return true;
+			});
+
+			return parent::from($payload);
+		}
+
 		if (!is_string($payload)) {
 			return parent::from(...$payloads);
 		}

@@ -8,7 +8,7 @@ use BuckhamDuffy\LaravelXeroPracticeManager\Objects\Client\RelationshipUpdateDat
 
 class ClientsResource extends AbstractResource
 {
-	public function list(): ClientsListRequest
+	public function list(bool $detailed = false): ClientsListRequest
 	{
 		return new ClientsListRequest($this->connector);
 	}
