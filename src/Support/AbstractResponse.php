@@ -54,7 +54,7 @@ abstract class AbstractResponse extends Data
 	{
 		return array_map(function($item): mixed {
 			if (is_array($item)) {
-				if (static::isList($item)) {
+				if (count($item) > 0) {
 					return static::cleanValues($item);
 				}
 
