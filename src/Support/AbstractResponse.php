@@ -17,14 +17,7 @@ abstract class AbstractResponse extends Data
 		$payload = count($payloads) === 1 ? Arr::first($payloads) : $payloads;
 
 		if (is_array($payload)) {
-			$payload = array_filter($payload, function($item): bool {
-				if (is_array($item)) {
-					return $item !== [];
-				}
-
-				return true;
-			});
-
+			$payload = self::cleanValues($payload);
 			return parent::from($payload);
 		}
 
@@ -43,33 +36,52 @@ abstract class AbstractResponse extends Data
 			$data = $data[static::$unwrap];
 		}
 
-		$isAssocArray = function(array $array) {
-			foreach ($array as $value) {
-				if (!is_array($value)) {
-					return false;
-				}
-			}
-
-			return true;
-		};
-
 		foreach (static::$relations as $key) {
 			if (array_key_exists($key, $data) && count($data[$key]) === 1) {
 				$relation = Arr::first($data[$key]);
-				$data[$key] = $isAssocArray($relation) ? array_values($relation) : [$relation];
+				$data[$key] = static::isAssoc($relation) ? array_values($relation) : [$relation];
 			}
 		}
 
-		$data = array_filter($data, function($item): bool {
-			if (is_array($item)) {
-				return $item !== [];
-			}
-
-			return true;
-		});
+		$data = self::cleanValues($data);
 
 		$data['xml'] = $payload;
 
 		return parent::from($data);
+	}
+
+	protected static function cleanValues(array $data): array
+	{
+		return array_map(function($item): mixed {
+			if (is_array($item)) {
+				if (static::isList($item)) {
+					return static::cleanValues($item);
+				}
+
+				if ($item === []) {
+					return null;
+				}
+			}
+
+			return $item;
+		}, $data);
+	}
+
+	protected static function isAssoc(array $array): bool
+	{
+		foreach ($array as $value) {
+			if (!is_array($value)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	protected static function isList(array $array): bool
+	{
+		$keys = array_keys($array);
+
+		return array_keys($keys) !== $keys;
 	}
 }

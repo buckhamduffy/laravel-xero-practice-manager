@@ -11,7 +11,7 @@ class ClientRelationshipAddRequest extends AbstractRequest
 {
 	public Method $method = Method::POST;
 
-	public function __construct(XeroPracticeManagerConnector $connector, private RelationshipAddData $payload)
+	public function __construct(XeroPracticeManagerConnector $connector, private readonly RelationshipAddData $payload)
 	{
 		parent::__construct($connector);
 	}

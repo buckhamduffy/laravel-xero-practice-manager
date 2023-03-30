@@ -3,6 +3,7 @@
 namespace BuckhamDuffy\LaravelXeroPracticeManager;
 
 use Saloon\Http\Connector;
+use BuckhamDuffy\LaravelXeroPracticeManager\Resources\Staff\StaffResource;
 use BuckhamDuffy\LaravelXeroPracticeManager\Resources\Clients\ClientsResource;
 use BuckhamDuffy\LaravelXeroPracticeManager\Resources\ClientGroups\ClientGroupsResource;
 
@@ -26,13 +27,18 @@ class XeroPracticeManagerConnector extends Connector
 		];
 	}
 
-	public function clients()
+	public function clients(): ClientsResource
 	{
 		return new ClientsResource($this);
 	}
 
-	public function clientGroups()
+	public function clientGroups(): ClientGroupsResource
 	{
 		return new ClientGroupsResource($this);
+	}
+
+	public function staff(): StaffResource
+	{
+		return new StaffResource($this);
 	}
 }

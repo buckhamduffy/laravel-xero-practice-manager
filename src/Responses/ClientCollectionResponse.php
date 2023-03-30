@@ -10,10 +10,10 @@ use BuckhamDuffy\LaravelXeroPracticeManager\Support\AbstractResponse;
 class ClientCollectionResponse extends AbstractResponse
 {
 	/**
-	 * @var DataCollection<int, ClientData>
+	 * @var null|DataCollection<int, ClientData>
 	 */
 	#[DataCollectionOf(ClientData::class)]
-	public ?DataCollection $Clients;
+	public ?DataCollection $Clients = null;
 
 	public string $Status;
 

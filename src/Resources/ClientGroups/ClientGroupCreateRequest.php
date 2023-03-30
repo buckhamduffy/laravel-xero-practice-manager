@@ -3,7 +3,6 @@
 namespace BuckhamDuffy\LaravelXeroPracticeManager\Resources\ClientGroups;
 
 use Saloon\Enums\Method;
-use Spatie\ArrayToXml\ArrayToXml;
 use BuckhamDuffy\LaravelXeroPracticeManager\Objects\ClientGroupData;
 use BuckhamDuffy\LaravelXeroPracticeManager\Support\AbstractRequest;
 use BuckhamDuffy\LaravelXeroPracticeManager\XeroPracticeManagerConnector;
@@ -13,7 +12,7 @@ class ClientGroupCreateRequest extends AbstractRequest
 	protected Method $method = Method::POST;
 	protected ?string $responseModel = ClientGroupData::class;
 
-	public function __construct(XeroPracticeManagerConnector $connector, private string $name, private string $clientUuid)
+	public function __construct(XeroPracticeManagerConnector $connector, private readonly string $name, private readonly string $clientUuid)
 	{
 		parent::__construct($connector);
 	}
@@ -25,9 +24,12 @@ class ClientGroupCreateRequest extends AbstractRequest
 
 	protected function defaultBody(): ?string
 	{
-		return ArrayToXml::convert([
-			'Name'       => $this->name,
-			'ClientUUID' => $this->clientUuid,
-		], 'Group');
+		return $this->xmlResponse(
+			[
+				'Name'       => $this->name,
+				'ClientUUID' => $this->clientUuid,
+			],
+			'Group'
+		);
 	}
 }

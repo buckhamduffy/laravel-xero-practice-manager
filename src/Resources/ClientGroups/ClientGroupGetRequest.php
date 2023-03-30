@@ -12,7 +12,7 @@ class ClientGroupGetRequest extends AbstractRequest
 	protected Method $method = Method::GET;
 	protected ?string $responseModel = ClientGroupData::class;
 
-	public function __construct(XeroPracticeManagerConnector $connector, private string $uuid)
+	public function __construct(XeroPracticeManagerConnector $connector, private readonly string $uuid)
 	{
 		parent::__construct($connector);
 	}

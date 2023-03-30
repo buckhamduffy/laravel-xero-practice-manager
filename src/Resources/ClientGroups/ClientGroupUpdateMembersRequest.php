@@ -14,9 +14,9 @@ class ClientGroupUpdateMembersRequest extends AbstractRequest
 
 	public function __construct(
 		XeroPracticeManagerConnector $connector,
-		private string $groupUuid,
-		private array $add = [],
-		private array $remove = []
+		private readonly string $groupUuid,
+		private readonly array $add = [],
+		private readonly array $remove = []
 	) {
 		parent::__construct($connector);
 	}
@@ -40,6 +40,6 @@ class ClientGroupUpdateMembersRequest extends AbstractRequest
 			$array['__custom:remove:' . $key] = ['_attributes' => ['uuid' => $value]];
 		}
 
-		return \Spatie\ArrayToXml\ArrayToXml::convert($array, 'Group');
+		return $this->xmlResponse($array, 'Group');
 	}
 }

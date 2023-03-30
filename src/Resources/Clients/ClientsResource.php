@@ -2,6 +2,7 @@
 
 namespace BuckhamDuffy\LaravelXeroPracticeManager\Resources\Clients;
 
+use BuckhamDuffy\LaravelXeroPracticeManager\Objects\ClientData;
 use BuckhamDuffy\LaravelXeroPracticeManager\Support\AbstractResource;
 use BuckhamDuffy\LaravelXeroPracticeManager\Objects\Client\RelationshipAddData;
 use BuckhamDuffy\LaravelXeroPracticeManager\Objects\Client\RelationshipUpdateData;
@@ -18,7 +19,7 @@ class ClientsResource extends AbstractResource
 		return new ClientsSearchRequest($this->connector);
 	}
 
-	public function save(\BuckhamDuffy\LaravelXeroPracticeManager\Objects\ClientData $clientData): ClientCreateRequest|ClientUpdateRequest
+	public function save(ClientData $clientData): ClientCreateRequest|ClientUpdateRequest
 	{
 		if ($clientData->getUUID()) {
 			return new ClientUpdateRequest($this->connector, $clientData);
@@ -27,22 +28,22 @@ class ClientsResource extends AbstractResource
 		return new ClientCreateRequest($this->connector, $clientData);
 	}
 
-	public function find(string $xeroId)
+	public function find(string $xeroId): ClientGetRequest
 	{
 		return new ClientGetRequest($this->connector, $xeroId);
 	}
 
-	public function addRelationship(RelationshipAddData $request)
+	public function addRelationship(RelationshipAddData $request): ClientRelationshipAddRequest
 	{
 		return new ClientRelationshipAddRequest($this->connector, $request);
 	}
 
-	public function deleteRelationship(string $uuid)
+	public function deleteRelationship(string $uuid): ClientRelationshipDeleteRequest
 	{
 		return new ClientRelationshipDeleteRequest($this->connector, $uuid);
 	}
 
-	public function updateRelationship(RelationshipUpdateData $request)
+	public function updateRelationship(RelationshipUpdateData $request): ClientRelationshipUpdateRequest
 	{
 		return new ClientRelationshipUpdateRequest($this->connector, $request);
 	}

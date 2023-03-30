@@ -1,14 +1,17 @@
 <?php
 
-namespace BuckhamDuffy\LaravelXeroPracticeManager\Resources\Clients;
+namespace BuckhamDuffy\LaravelXeroPracticeManager\Resources\Staff;
 
 use Saloon\Enums\Method;
+use BuckhamDuffy\LaravelXeroPracticeManager\Objects\StaffData;
 use BuckhamDuffy\LaravelXeroPracticeManager\Support\AbstractRequest;
 use BuckhamDuffy\LaravelXeroPracticeManager\XeroPracticeManagerConnector;
 
-class ClientRelationshipDeleteRequest extends AbstractRequest
+class StaffGetResource extends AbstractRequest
 {
-	protected Method $method = Method::POST;
+	protected Method $method = Method::GET;
+
+	protected ?string $responseModel = StaffData::class;
 
 	public function __construct(XeroPracticeManagerConnector $connector, private readonly string $uuid)
 	{
@@ -17,16 +20,6 @@ class ClientRelationshipDeleteRequest extends AbstractRequest
 
 	public function resolveEndpoint(): string
 	{
-		return '/client.api/updaterelationship';
-	}
-
-	protected function defaultBody(): ?string
-	{
-		return $this->xmlResponse(
-			[
-				'UUID' => $this->uuid
-			],
-			'Relationship'
-		);
+		return '/staff.api/get/' . $this->uuid;
 	}
 }

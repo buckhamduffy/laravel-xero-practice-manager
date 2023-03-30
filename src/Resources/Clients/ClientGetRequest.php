@@ -13,7 +13,7 @@ class ClientGetRequest extends AbstractRequest
 
 	protected ?string $responseModel = ClientData::class;
 
-	public function __construct(XeroPracticeManagerConnector $connector, private string $xeroId)
+	public function __construct(XeroPracticeManagerConnector $connector, private readonly string $xeroId)
 	{
 		parent::__construct($connector);
 	}

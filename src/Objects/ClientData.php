@@ -54,6 +54,8 @@ class ClientData extends AbstractResponse
 	public ?string $ReturnType = null;
 	public ?string $PrepareActivityStatement = null;
 	public ?string $PrepareTaxReturn = null;
+	public ?RelatedData $AccountManagerUUID = null;
+	public ?RelatedData $JobManagerUUID = null;
 
 	#[DataCollectionOf(RelatedData::class)]
 	public ?DataCollection $Groups = null;
@@ -554,12 +556,41 @@ class ClientData extends AbstractResponse
 		return $this;
 	}
 
+	public function getAccountManagerUUID(): ?RelatedData
+	{
+		return $this->AccountManagerUUID;
+	}
+
+	public function setAccountManagerUUID(?RelatedData $AccountManagerUUID): void
+	{
+		$this->AccountManagerUUID = $AccountManagerUUID;
+	}
+
+	public function getJobManagerUUID(): ?RelatedData
+	{
+		return $this->JobManagerUUID;
+	}
+
+	public function setJobManagerUUID(?RelatedData $JobManagerUUID): void
+	{
+		$this->JobManagerUUID = $JobManagerUUID;
+	}
+
 	public function toArray(): array
 	{
-		return Arr::except(parent::toArray(), [
-			'Groups',
-			'Relationships',
-			'Contacts',
-		]);
+		return Arr::except(
+			array_merge(
+				parent::toArray(),
+				[
+					'AccountManagerUUID' => $this->getAccountManagerUUID()?->getUUID(),
+					'JobManagerUUID'     => $this->getJobManagerUUID()?->getUUID(),
+				],
+			),
+			[
+				'Groups',
+				'Relationships',
+				'Contacts',
+			]
+		);
 	}
 }
