@@ -30,10 +30,12 @@ class ClientData extends AbstractResponse
 	public ?string $Fax = null;
 	public ?string $Website = null;
 	public ?string $ExportCode = null;
+	public ?string $Title = null;
 	public ?string $FirstName = null;
 	public ?string $LastName = null;
 	public ?string $OtherName = null;
 	public ?string $DateOfBirth = null;
+	public ?string $Gender = null;
 	public ?string $ReferralSource = null;
 	public ?string $IsProspect = null;
 	public ?string $IsDeleted = null;
@@ -54,8 +56,8 @@ class ClientData extends AbstractResponse
 	public ?string $ReturnType = null;
 	public ?string $PrepareActivityStatement = null;
 	public ?string $PrepareTaxReturn = null;
-	public ?RelatedData $AccountManagerUUID = null;
-	public ?RelatedData $JobManagerUUID = null;
+	public ?RelatedData $AccountManager = null;
+	public ?RelatedData $JobManager = null;
 
 	#[DataCollectionOf(RelatedData::class)]
 	public ?DataCollection $Groups = null;
@@ -101,7 +103,7 @@ class ClientData extends AbstractResponse
 
 	public function getAddress(): ?string
 	{
-		return $this->Address;
+		return trim($this->Address ?: '');
 	}
 
 	public function setAddress(?string $Address): ClientData
@@ -156,7 +158,7 @@ class ClientData extends AbstractResponse
 
 	public function getPostalAddress(): ?string
 	{
-		return $this->PostalAddress;
+		return trim($this->PostalAddress ?: '');
 	}
 
 	public function setPostalAddress(?string $PostalAddress): ClientData
@@ -556,24 +558,34 @@ class ClientData extends AbstractResponse
 		return $this;
 	}
 
-	public function getAccountManagerUUID(): ?RelatedData
+	public function getAccountManager(): ?RelatedData
 	{
-		return $this->AccountManagerUUID;
+		return $this->AccountManager;
 	}
 
-	public function setAccountManagerUUID(?RelatedData $AccountManagerUUID): void
+	public function getJobManager(): ?RelatedData
 	{
-		$this->AccountManagerUUID = $AccountManagerUUID;
+		return $this->JobManager;
 	}
 
-	public function getJobManagerUUID(): ?RelatedData
+	public function getTitle(): ?string
 	{
-		return $this->JobManagerUUID;
+		return $this->Title;
 	}
 
-	public function setJobManagerUUID(?RelatedData $JobManagerUUID): void
+	public function setTitle(?string $Title): void
 	{
-		$this->JobManagerUUID = $JobManagerUUID;
+		$this->Title = $Title;
+	}
+
+	public function getGender(): ?string
+	{
+		return $this->Gender;
+	}
+
+	public function setGender(?string $Gender): void
+	{
+		$this->Gender = $Gender;
 	}
 
 	public function toArray(): array
@@ -582,14 +594,16 @@ class ClientData extends AbstractResponse
 			array_merge(
 				parent::toArray(),
 				[
-					'AccountManagerUUID' => $this->getAccountManagerUUID()?->getUUID(),
-					'JobManagerUUID'     => $this->getJobManagerUUID()?->getUUID(),
+					'AccountManagerUUID' => $this->getAccountManager()?->getUUID(),
+					'JobManagerUUID'     => $this->getJobManager()?->getUUID(),
 				],
 			),
 			[
 				'Groups',
 				'Relationships',
 				'Contacts',
+				'AccountManager',
+				'JobManager',
 			]
 		);
 	}

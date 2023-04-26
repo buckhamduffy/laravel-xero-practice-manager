@@ -47,4 +47,9 @@ class ClientsResource extends AbstractResource
 	{
 		return new ClientRelationshipUpdateRequest($this->connector, $request);
 	}
+
+	public function archive(string $uuid): ClientArchiveRequest
+	{
+		return new ClientArchiveRequest($this->connector, $uuid);
+	}
 }
