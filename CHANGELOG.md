@@ -3,6 +3,14 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v1.3.0 - 2023-04-26
+#### Chore
+- **(deps)** bump dependabot/fetch-metadata from 1.3.6 to 1.4.0 - (6fdd1e5) - dependabot[bot]
+#### Features
+- add archive to clients endpoint - (7b7dba1) - Aaron Florey
+
+- - -
+
 ## v1.2.1 - 2023-03-30
 #### Bug Fixes
 - small fix for handling relations - (c626567) - Aaron Florey
