@@ -28,19 +28,19 @@ class ClientsSearchRequest extends AbstractRequest
 		return $this;
 	}
 
- /**
-  * @return array{query: mixed}
-  */
- protected function defaultQuery(): array
- {
- 	$query = '';
+	/**
+	 * @return array{query: mixed}
+	 */
+	protected function defaultQuery(): array
+	{
+		$query = '';
 
- 	if ($this->where) {
- 		$query = $this->where['value'];
- 	}
+		if ($this->where) {
+			$query = $this->where['value'];
+		}
 
- 	return [
- 		'query' => $query,
- 	];
- }
+		return [
+			'query' => $query,
+		];
+	}
 }

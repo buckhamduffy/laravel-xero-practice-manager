@@ -2,16 +2,25 @@
 
 namespace BuckhamDuffy\LaravelXeroPracticeManager;
 
+use Saloon\Http\Response;
 use Saloon\Http\Connector;
+use Saloon\RateLimitPlugin\Limit;
+use Illuminate\Support\Facades\Cache;
+use Saloon\RateLimitPlugin\Traits\HasRateLimits;
+use Saloon\RateLimitPlugin\Contracts\RateLimitStore;
+use Saloon\RateLimitPlugin\Stores\LaravelCacheStore;
 use BuckhamDuffy\LaravelXeroPracticeManager\Resources\Staff\StaffResource;
 use BuckhamDuffy\LaravelXeroPracticeManager\Resources\Clients\ClientsResource;
 use BuckhamDuffy\LaravelXeroPracticeManager\Resources\ClientGroups\ClientGroupsResource;
 
 class XeroPracticeManagerConnector extends Connector
 {
+	use HasRateLimits;
+
 	public function __construct(private string $token, private string $tenantId)
 	{
 		$this->withTokenAuth($this->token);
+		$this->rateLimitingEnabled = (bool) config('xero-practice-manager.rate_limit.enable');
 	}
 
 	public function resolveBaseUrl(): string
@@ -40,5 +49,33 @@ class XeroPracticeManagerConnector extends Connector
 	public function staff(): StaffResource
 	{
 		return new StaffResource($this);
+	}
+
+	protected function resolveLimits(): array
+	{
+		return [
+			Limit::allow(60)->everyMinute(),
+			Limit::allow(5000)->everyDay(),
+		];
+	}
+
+	protected function resolveRateLimitStore(): RateLimitStore
+	{
+		return new LaravelCacheStore(
+			Cache::store(
+				config('xero-practice-manager.rate_limit.cache_driver', 'array')
+			)
+		);
+	}
+
+	protected function handleTooManyAttempts(Response $response, Limit $limit): void
+	{
+		if ($response->status() !== 429) {
+			return;
+		}
+
+		$limit->exceeded(
+			releaseInSeconds: (int) $response->header('X-MinLimit-Remaining')
+		);
 	}
 }
