@@ -3,6 +3,12 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v1.5.0 - 2023-08-13
+#### Features
+- Add rate limiting support - (87bec58) - Aaron Florey
+
+- - -
+
 ## v1.4.0 - 2023-07-11
 #### Chore
 - **(deps)** bump dependabot/fetch-metadata from 1.5.1 to 1.6.0 - (26a0469) - dependabot[bot]
