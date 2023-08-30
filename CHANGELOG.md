@@ -3,6 +3,13 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v1.5.1 - 2023-08-30
+#### Bug Fixes
+- rely on headers for limits - (7935166) - Aaron Florey
+- remove daily limit for now - (c185c5b) - Aaron Florey
+
+- - -
+
 ## v1.5.0 - 2023-08-13
 #### Features
 - Add rate limiting support - (87bec58) - Aaron Florey
