@@ -55,7 +55,7 @@ class XeroPracticeManagerConnector extends Connector
 	{
 		return [
 			Limit::allow(60)->everyMinute(),
-			Limit::allow(5000)->everyDay(),
+			// Limit::allow(5000)->everyDay(),
 		];
 	}
 
