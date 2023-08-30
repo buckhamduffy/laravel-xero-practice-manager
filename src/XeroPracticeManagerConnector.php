@@ -53,10 +53,7 @@ class XeroPracticeManagerConnector extends Connector
 
 	protected function resolveLimits(): array
 	{
-		return [
-			Limit::allow(60)->everyMinute(),
-			// Limit::allow(5000)->everyDay(),
-		];
+		return [];
 	}
 
 	protected function resolveRateLimitStore(): RateLimitStore
