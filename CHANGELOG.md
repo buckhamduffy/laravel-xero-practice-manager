@@ -3,6 +3,12 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v1.5.3 - 2023-08-31
+#### Bug Fixes
+- customise rate limit message and expiry - (d6f8e7e) - Alex Buckham
+
+- - -
+
 ## v1.5.2 - 2023-08-31
 #### Bug Fixes
 - let the package handle rate limit retry - (54b2257) - Aaron Florey
