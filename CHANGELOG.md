@@ -3,6 +3,12 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v1.5.2 - 2023-08-31
+#### Bug Fixes
+- let the package handle rate limit retry - (54b2257) - Aaron Florey
+
+- - -
+
 ## v1.5.1 - 2023-08-30
 #### Bug Fixes
 - rely on headers for limits - (7935166) - Aaron Florey
