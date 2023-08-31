@@ -2,9 +2,7 @@
 
 namespace BuckhamDuffy\LaravelXeroPracticeManager;
 
-use Saloon\Http\Response;
 use Saloon\Http\Connector;
-use Saloon\RateLimitPlugin\Limit;
 use Illuminate\Support\Facades\Cache;
 use Saloon\RateLimitPlugin\Traits\HasRateLimits;
 use Saloon\RateLimitPlugin\Contracts\RateLimitStore;
@@ -62,17 +60,6 @@ class XeroPracticeManagerConnector extends Connector
 			Cache::store(
 				config('xero-practice-manager.rate_limit.cache_driver', 'array')
 			)
-		);
-	}
-
-	protected function handleTooManyAttempts(Response $response, Limit $limit): void
-	{
-		if ($response->status() !== 429) {
-			return;
-		}
-
-		$limit->exceeded(
-			releaseInSeconds: (int) $response->header('X-MinLimit-Remaining')
 		);
 	}
 }
