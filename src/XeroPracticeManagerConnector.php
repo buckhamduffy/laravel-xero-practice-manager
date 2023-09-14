@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use Saloon\RateLimitPlugin\Traits\HasRateLimits;
 use Saloon\RateLimitPlugin\Contracts\RateLimitStore;
 use Saloon\RateLimitPlugin\Stores\LaravelCacheStore;
+use BuckhamDuffy\LaravelXeroPracticeManager\Resources\Jobs\JobsResource;
 use BuckhamDuffy\LaravelXeroPracticeManager\Resources\Staff\StaffResource;
 use BuckhamDuffy\LaravelXeroPracticeManager\Resources\Clients\ClientsResource;
 use BuckhamDuffy\LaravelXeroPracticeManager\Resources\ClientGroups\ClientGroupsResource;
@@ -32,7 +33,7 @@ class XeroPracticeManagerConnector extends Connector
 	{
 		return [
 			'Accept'         => 'application/xml',
-			'Xero-tenant-id' => $this->tenantId
+			'Xero-tenant-id' => $this->tenantId,
 		];
 	}
 
@@ -49,6 +50,11 @@ class XeroPracticeManagerConnector extends Connector
 	public function staff(): StaffResource
 	{
 		return new StaffResource($this);
+	}
+
+	public function jobs(): JobsResource
+	{
+		return new JobsResource($this);
 	}
 
 	protected function resolveLimits(): array
