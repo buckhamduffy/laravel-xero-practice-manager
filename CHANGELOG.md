@@ -3,6 +3,12 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v1.6.0 - 2023-09-14
+#### Features
+- add basic jobs support - (ef5eead) - Aaron Florey
+
+- - -
+
 ## v1.5.3 - 2023-08-31
 #### Bug Fixes
 - customise rate limit message and expiry - (d6f8e7e) - Alex Buckham
