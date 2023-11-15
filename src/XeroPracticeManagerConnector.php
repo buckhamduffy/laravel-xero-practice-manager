@@ -16,7 +16,10 @@ use BuckhamDuffy\LaravelXeroPracticeManager\Resources\ClientGroups\ClientGroupsR
 
 class XeroPracticeManagerConnector extends Connector
 {
+
 	use HasRateLimits;
+
+	private string $version = '3.1';
 
 	public function __construct(private string $token, private string $tenantId)
 	{
@@ -26,7 +29,7 @@ class XeroPracticeManagerConnector extends Connector
 
 	public function resolveBaseUrl(): string
 	{
-		return 'https://api.xero.com/practicemanager/3.1/';
+		return sprintf('https://api.xero.com/practicemanager/%s/', $this->version);
 	}
 
 	protected function defaultHeaders(): array
@@ -55,6 +58,13 @@ class XeroPracticeManagerConnector extends Connector
 	public function jobs(): JobsResource
 	{
 		return new JobsResource($this);
+	}
+
+	public function withVersion(string $version): self
+	{
+		$this->version = $version;
+
+		return $this;
 	}
 
 	protected function resolveLimits(): array
@@ -87,4 +97,5 @@ class XeroPracticeManagerConnector extends Connector
 			$limit->name($type . '_limit_exceeded');
 		}
 	}
+
 }
