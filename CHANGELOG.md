@@ -3,6 +3,12 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v1.7.0 - 2023-11-15
+#### Features
+- allow changing api version - (4b08f19) - Aaron Florey
+
+- - -
+
 ## v1.6.0 - 2023-09-14
 #### Features
 - add basic jobs support - (ef5eead) - Aaron Florey
