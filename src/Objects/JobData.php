@@ -15,6 +15,7 @@ class JobData extends AbstractResponse
 
 	public static array $relations = ['Assigned', 'Tasks', 'Milestones'];
 
+	public ?string $UUID = null;
 	public ?string $ID = null;
 	public ?string $Name = null;
 	public ?string $Description = null;
@@ -42,6 +43,11 @@ class JobData extends AbstractResponse
 
 	#[DataCollectionOf(NoteData::class)]
 	public ?DataCollection $Notes = null;
+
+	public function getUUID(): ?string
+	{
+		return $this->UUID;
+	}
 
 	public function getID(): ?string
 	{
