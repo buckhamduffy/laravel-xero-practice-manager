@@ -3,6 +3,12 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v1.7.1 - 2023-11-22
+#### Bug Fixes
+- add job guid to data object - (052de39) - Alex Buckham
+
+- - -
+
 ## v1.7.0 - 2023-11-15
 #### Features
 - allow changing api version - (4b08f19) - Aaron Florey
