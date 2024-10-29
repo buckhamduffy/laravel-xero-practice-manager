@@ -21,18 +21,19 @@ abstract class AbstractRequest extends Request implements Cacheable, HasBody
 	use HasCaching;
 	use HasXmlBody;
 
-	/**
-	 * @var null|class-string<T>
-	 */
+	/** @var null|class-string<T> */
 	protected ?string $responseModel = null;
 
 	public function __construct(protected XeroPracticeManagerConnector $connector)
 	{
-		if (!\config('xero-practice-manager.cache')) {
+		if (!config('xero-practice-manager.cache')) {
 			$this->disableCaching();
 		}
 	}
 
+	/**
+	 * @return Response<T>
+	 */
 	public function send(): Response
 	{
 		return new Response(

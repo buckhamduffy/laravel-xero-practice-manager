@@ -3,7 +3,7 @@
         "enabled": true,
         "actions": [
             {
-                "action": "\\Ramsey\\CaptainHook\\ValidateConventionalCommit"
+                "action": "\\BuckhamDuffy\\CodingStandards\\CaptainHook\\CogCommitMessageAction"
             }
         ]
     },
@@ -11,7 +11,7 @@
         "enabled": true,
         "actions": [
             {
-                "action": "cog check --from-latest-tag"
+                "action": "\\BuckhamDuffy\\CodingStandards\\CaptainHook\\CogPrePushAction"
             }
         ]
     },
@@ -19,20 +19,19 @@
         "enabled": true,
         "actions": [
             {
-                "action": "./vendor/bin/ecs --fix"
+                "action": "\\BuckhamDuffy\\CodingStandards\\CaptainHook\\PhpstanAction"
             },
             {
-                "action": "./vendor/bin/phpstan"
+                "action": "\\BuckhamDuffy\\CodingStandards\\CaptainHook\\GithubActionLintAction"
+            },
+            {
+                "action": "\\BuckhamDuffy\\CodingStandards\\CaptainHook\\EcsAction"
             }
         ]
     },
     "prepare-commit-msg": {
-        "enabled": true,
-        "actions": [
-            {
-                "action": "\\Ramsey\\CaptainHook\\PrepareConventionalCommit"
-            }
-        ]
+        "enabled": false,
+        "actions": []
     },
     "post-commit": {
         "enabled": false,
@@ -53,5 +52,8 @@
     "post-change": {
         "enabled": false,
         "actions": []
+    },
+    "config": {
+        "fail-on-first-error": false
     }
 }

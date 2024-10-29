@@ -3,7 +3,6 @@
 namespace BuckhamDuffy\LaravelXeroPracticeManager\Support;
 
 use Saloon\Http\Response as SaloonResponse;
-use Saloon\Contracts\Response as SaloonResponseContract;
 use BuckhamDuffy\LaravelXeroPracticeManager\Responses\ErrorResponse;
 
 /**
@@ -14,13 +13,18 @@ class Response extends SaloonResponse
 	/**
 	 * @param null|class-string<T> $responseModel
 	 */
-	public function __construct(SaloonResponseContract $response, private readonly ?string $responseModel = null)
+	public function __construct(SaloonResponse $response, private readonly ?string $responseModel = null)
 	{
-		parent::__construct($response->getPsrResponse(), $response->getPendingRequest(), $response->getSenderException());
+		parent::__construct(
+			$response->getPsrResponse(),
+			$response->getPendingRequest(),
+			$response->getPsrRequest(),
+			$response->getSenderException()
+		);
 	}
 
 	/**
-	 * @return null|T
+	 * @return null|ErrorResponse|T
 	 */
 	public function getDto(): mixed
 	{

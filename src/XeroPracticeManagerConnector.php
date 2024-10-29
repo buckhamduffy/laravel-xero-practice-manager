@@ -6,6 +6,7 @@ use Saloon\Http\Response;
 use Saloon\Http\Connector;
 use Saloon\RateLimitPlugin\Limit;
 use Illuminate\Support\Facades\Cache;
+use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\RateLimitPlugin\Traits\HasRateLimits;
 use Saloon\RateLimitPlugin\Contracts\RateLimitStore;
 use Saloon\RateLimitPlugin\Stores\LaravelCacheStore;
@@ -16,20 +17,19 @@ use BuckhamDuffy\LaravelXeroPracticeManager\Resources\ClientGroups\ClientGroupsR
 
 class XeroPracticeManagerConnector extends Connector
 {
-
 	use HasRateLimits;
 
 	private string $version = '3.1';
 
 	public function __construct(private string $token, private string $tenantId)
 	{
-		$this->withTokenAuth($this->token);
+		$this->authenticate(new TokenAuthenticator($this->token));
 		$this->rateLimitingEnabled = (bool) config('xero-practice-manager.rate_limit.enable');
 	}
 
 	public function resolveBaseUrl(): string
 	{
-		return sprintf('https://api.xero.com/practicemanager/%s/', $this->version);
+		return \sprintf('https://api.xero.com/practicemanager/%s/', $this->version);
 	}
 
 	protected function defaultHeaders(): array
@@ -97,5 +97,4 @@ class XeroPracticeManagerConnector extends Connector
 			$limit->name($type . '_limit_exceeded');
 		}
 	}
-
 }

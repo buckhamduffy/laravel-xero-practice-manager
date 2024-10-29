@@ -3,8 +3,8 @@ name: PHPStan
 on:
   push:
     paths:
-      - '**.php'
-      - 'phpstan.neon.dist'
+      - "**.php"
+      - "phpstan.neon.dist"
 
 jobs:
   phpstan:
@@ -16,7 +16,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: "8.2"
           coverage: none
 
       - name: Install composer dependencies
@@ -24,3 +24,18 @@ jobs:
 
       - name: Run PHPStan
         run: ./vendor/bin/phpstan --error-format=github
+
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    needs: [phpstan]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: buckhamduffy/release-drafter@v1
+        with:
+          master_branch: main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
