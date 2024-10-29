@@ -3,6 +3,12 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v2.0.0 - 2024-10-29
+#### Features
+- upgrade to saloon 3 - (c50b328) - Aaron Florey
+
+- - -
+
 ## v1.7.1 - 2023-11-22
 #### Bug Fixes
 - add job guid to data object - (052de39) - Alex Buckham
