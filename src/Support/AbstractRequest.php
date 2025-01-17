@@ -24,6 +24,8 @@ abstract class AbstractRequest extends Request implements Cacheable, HasBody
 	/** @var null|class-string<T> */
 	protected ?string $responseModel = null;
 
+	private $cacheExpiryInSeconds = 60 * 15;
+
 	public function __construct(protected XeroPracticeManagerConnector $connector)
 	{
 		if (!config('xero-practice-manager.cache')) {
@@ -49,7 +51,15 @@ abstract class AbstractRequest extends Request implements Cacheable, HasBody
 
 	public function cacheExpiryInSeconds(): int
 	{
-		return 60 * 15;
+		return $this->cacheExpiryInSeconds;
+	}
+
+	public function enableCaching(int $cacheExpiryInSeconds): static
+	{
+		$this->cacheExpiryInSeconds = $cacheExpiryInSeconds;
+		$this->cachingEnabled = true;
+
+		return $this;
 	}
 
 	protected function xmlResponse(array $payload, string $root)
