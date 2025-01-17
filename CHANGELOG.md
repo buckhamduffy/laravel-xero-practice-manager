@@ -3,6 +3,12 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v2.0.1 - 2025-01-17
+#### Bug Fixes
+- allow setting cache expiry - (631a09e) - Aaron Florey
+
+- - -
+
 ## v2.0.0 - 2024-10-29
 #### Features
 - upgrade to saloon 3 - (c50b328) - Aaron Florey
