@@ -14,6 +14,7 @@ use BuckhamDuffy\LaravelXeroPracticeManager\Resources\Jobs\JobsResource;
 use BuckhamDuffy\LaravelXeroPracticeManager\Resources\Staff\StaffResource;
 use BuckhamDuffy\LaravelXeroPracticeManager\Resources\Clients\ClientsResource;
 use BuckhamDuffy\LaravelXeroPracticeManager\Resources\ClientGroups\ClientGroupsResource;
+use BuckhamDuffy\LaravelXeroPracticeManager\Resources\CustomFields\CustomFieldsResource;
 
 class XeroPracticeManagerConnector extends Connector
 {
@@ -55,9 +56,14 @@ class XeroPracticeManagerConnector extends Connector
 		return new StaffResource($this);
 	}
 
-	public function jobs(): JobsResource
+    public function jobs(): JobsResource
+    {
+        return new JobsResource($this);
+    }
+
+	public function customFields(): CustomFieldsResource
 	{
-		return new JobsResource($this);
+		return new CustomFieldsResource($this);
 	}
 
 	public function withVersion(string $version): self
