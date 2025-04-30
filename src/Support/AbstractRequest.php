@@ -54,7 +54,7 @@ abstract class AbstractRequest extends Request implements Cacheable, HasBody
 		return $this->cacheExpiryInSeconds;
 	}
 
-	public function enableCaching(int $cacheExpiryInSeconds): static
+	public function enableCaching(int $cacheExpiryInSeconds = 300): static
 	{
 		$this->cacheExpiryInSeconds = $cacheExpiryInSeconds;
 		$this->cachingEnabled = true;
