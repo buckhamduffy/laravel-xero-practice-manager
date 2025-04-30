@@ -3,6 +3,12 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v2.1.1 - 2025-04-30
+#### Bug Fixes
+- setup default cache value - (00264c5) - Alex Buckham
+
+- - -
+
 ## v2.1.0 - 2025-01-28
 #### Features
 - implement ability to load client custom fields - (e2f242a) - Alex Buckham
