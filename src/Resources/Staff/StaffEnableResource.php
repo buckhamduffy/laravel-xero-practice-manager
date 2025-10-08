@@ -10,7 +10,6 @@ use BuckhamDuffy\LaravelXeroPracticeManager\XeroPracticeManagerConnector;
 class StaffEnableResource extends AbstractRequest
 {
 	protected Method $method = Method::POST;
-
 	protected ?string $responseModel = StaffData::class;
 
 	public function __construct(XeroPracticeManagerConnector $connector, private readonly string $uuid)

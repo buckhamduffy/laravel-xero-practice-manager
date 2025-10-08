@@ -9,7 +9,6 @@ use BuckhamDuffy\LaravelXeroPracticeManager\Responses\StaffCollectionResponse;
 class StaffListRequest extends AbstractRequest
 {
 	protected Method $method = Method::GET;
-
 	protected ?string $responseModel = StaffCollectionResponse::class;
 	protected string $collectionKey = 'StaffList';
 

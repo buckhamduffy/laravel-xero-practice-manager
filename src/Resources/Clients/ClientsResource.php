@@ -53,8 +53,8 @@ class ClientsResource extends AbstractResource
 		return new ClientArchiveRequest($this->connector, $uuid);
 	}
 
-    public function customFields(string $xeroId): ClientGetCustomFieldsRequest
-    {
-        return new ClientGetCustomFieldsRequest($this->connector, $xeroId);
-    }
+	public function customFields(string $xeroId): ClientGetCustomFieldsRequest
+	{
+		return new ClientGetCustomFieldsRequest($this->connector, $xeroId);
+	}
 }

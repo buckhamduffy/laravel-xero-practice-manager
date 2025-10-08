@@ -10,7 +10,6 @@ use BuckhamDuffy\LaravelXeroPracticeManager\Responses\JobCollectionResponse;
 class JobsCurrentRequest extends AbstractRequest
 {
 	protected Method $method = Method::GET;
-
 	protected ?string $responseModel = JobCollectionResponse::class;
 	protected string $collectionKey = 'Jobs';
 

@@ -10,7 +10,6 @@ use BuckhamDuffy\LaravelXeroPracticeManager\Responses\ClientGroupCollectionRespo
 class ClientGroupListRequest extends AbstractRequest
 {
 	protected Method $method = Method::GET;
-
 	protected ?string $responseModel = ClientGroupCollectionResponse::class;
 	protected string $collectionKey = 'Groups';
 

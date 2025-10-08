@@ -56,10 +56,10 @@ class XeroPracticeManagerConnector extends Connector
 		return new StaffResource($this);
 	}
 
-    public function jobs(): JobsResource
-    {
-        return new JobsResource($this);
-    }
+	public function jobs(): JobsResource
+	{
+		return new JobsResource($this);
+	}
 
 	public function customFields(): CustomFieldsResource
 	{

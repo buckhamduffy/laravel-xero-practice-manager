@@ -2,22 +2,20 @@
 
 namespace BuckhamDuffy\LaravelXeroPracticeManager\Objects\Job;
 
-use Spatie\LaravelData\DataCollection;
-use Spatie\LaravelData\Attributes\DataCollectionOf;
+use Illuminate\Support\Collection;
 use BuckhamDuffy\LaravelXeroPracticeManager\Support\AbstractResponse;
 
 class NoteData extends AbstractResponse
 {
 	public static array $relations = ['Comments'];
-
 	public ?string $UUID = null;
 	public ?string $Title = null;
 	public ?string $Text = null;
 	public ?string $Date = null;
 	public ?string $CreatedBy = null;
 
-	#[DataCollectionOf(CommentData::class)]
-	public ?DataCollection $Comments = null;
+	/** @var null|CommentData[] */
+	public ?array $Comments = null;
 
 	public static function getRelations(): array
 	{
@@ -49,8 +47,11 @@ class NoteData extends AbstractResponse
 		return $this->CreatedBy;
 	}
 
-	public function getComments(): DataCollection
+	/**
+	 * @return Collection<int, CommentData>
+	 */
+	public function getComments(): Collection
 	{
-		return $this->Comments ?: CommentData::collection([]);
+		return CommentData::collect($this->Comments ?? [], Collection::class);
 	}
 }

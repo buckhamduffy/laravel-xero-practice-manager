@@ -10,7 +10,6 @@ use BuckhamDuffy\LaravelXeroPracticeManager\XeroPracticeManagerConnector;
 class ClientGetRequest extends AbstractRequest
 {
 	protected Method $method = Method::GET;
-
 	protected ?string $responseModel = ClientData::class;
 
 	public function __construct(XeroPracticeManagerConnector $connector, private readonly string $xeroId)

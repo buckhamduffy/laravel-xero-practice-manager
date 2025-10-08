@@ -2,29 +2,24 @@
 
 namespace BuckhamDuffy\LaravelXeroPracticeManager\Responses;
 
-use Spatie\LaravelData\DataCollection;
-use Spatie\LaravelData\Attributes\DataCollectionOf;
+use Illuminate\Support\Collection;
 use BuckhamDuffy\LaravelXeroPracticeManager\Objects\JobData;
 use BuckhamDuffy\LaravelXeroPracticeManager\Support\AbstractResponse;
 
 class JobCollectionResponse extends AbstractResponse
 {
-	/**
-	 * @var null|DataCollection<int, JobData>
-	 */
-	#[DataCollectionOf(JobData::class)]
-	public ?DataCollection $Jobs = null;
+	/** @var null|JobData[] */
+	public ?array $Jobs = null;
 
 	public string $Status;
-
 	public static array $relations = ['Jobs'];
 
 	/**
-	 * @return DataCollection<int, JobData>
+	 * @return Collection<int, JobData>
 	 */
-	public function getJobs(): DataCollection
+	public function getJobs(): Collection
 	{
-		return $this->Jobs ?: JobData::collection([]);
+		return JobData::collect($this->Jobs ?? [], Collection::class);
 	}
 
 	public function getStatus(): string

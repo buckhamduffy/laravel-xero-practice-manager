@@ -10,7 +10,6 @@ class ClientsSearchRequest extends AbstractRequest
 {
 	protected Method $method = Method::GET;
 	private array $where = [];
-
 	protected ?string $responseModel = ClientCollectionResponse::class;
 
 	public function resolveEndpoint(): string

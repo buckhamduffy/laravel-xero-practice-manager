@@ -2,14 +2,12 @@
 
 namespace BuckhamDuffy\LaravelXeroPracticeManager\Objects\Job;
 
-use Spatie\LaravelData\DataCollection;
-use Spatie\LaravelData\Attributes\DataCollectionOf;
+use Illuminate\Support\Collection;
 use BuckhamDuffy\LaravelXeroPracticeManager\Support\AbstractResponse;
 
 class TaskData extends AbstractResponse
 {
 	public static array $relations = ['Assigned'];
-
 	public ?string $UUID = null;
 	public ?string $TaskUUID = null;
 	public ?string $Name = null;
@@ -18,12 +16,11 @@ class TaskData extends AbstractResponse
 	public ?string $ActualMinutes = null;
 	public ?bool $Completed = null;
 	public ?bool $Billable = null;
-
 	public ?string $StartDate = null;
 	public ?string $DueDate = null;
 
-	#[DataCollectionOf(StaffData::class)]
-	public ?DataCollection $Assigned = null;
+	/** @var null|StaffData[]  */
+	public ?array $Assigned = null;
 
 	public static function getRelations(): array
 	{
@@ -80,8 +77,11 @@ class TaskData extends AbstractResponse
 		return $this->DueDate;
 	}
 
-	public function getAssigned(): DataCollection
+	/**
+	 * @return Collection<int, StaffData>
+	 */
+	public function getAssigned(): Collection
 	{
-		return $this->Assigned ?: StaffData::collection([]);
+		return StaffData::collect($this->Assigned ?? [], Collection::class);
 	}
 }

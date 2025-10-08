@@ -2,29 +2,24 @@
 
 namespace BuckhamDuffy\LaravelXeroPracticeManager\Responses;
 
-use Spatie\LaravelData\DataCollection;
-use Spatie\LaravelData\Attributes\DataCollectionOf;
+use Illuminate\Support\Collection;
 use BuckhamDuffy\LaravelXeroPracticeManager\Objects\StaffData;
 use BuckhamDuffy\LaravelXeroPracticeManager\Support\AbstractResponse;
 
 class StaffCollectionResponse extends AbstractResponse
 {
-	/**
-	 * @var null|DataCollection<int, StaffData>
-	 */
-	#[DataCollectionOf(StaffData::class)]
-	public ?DataCollection $StaffList = null;
+	/** @var null|array<int, StaffData> */
+	public ?array $StaffList = null;
 
 	public string $Status;
-
 	public static array $relations = ['StaffList'];
 
 	/**
-	 * @return DataCollection<int, StaffData>
+	 * @return Collection<int, StaffData>
 	 */
-	public function getStaff(): DataCollection
+	public function getStaff(): Collection
 	{
-		return $this->StaffList ?: StaffData::collection([]);
+		return StaffData::collect($this->StaffList, Collection::class);
 	}
 
 	public function getStatus(): string

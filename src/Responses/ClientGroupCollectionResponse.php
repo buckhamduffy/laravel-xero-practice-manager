@@ -2,30 +2,24 @@
 
 namespace BuckhamDuffy\LaravelXeroPracticeManager\Responses;
 
-use Spatie\LaravelData\DataCollection;
-use Spatie\LaravelData\Attributes\DataCollectionOf;
-use BuckhamDuffy\LaravelXeroPracticeManager\Objects\ClientData;
+use Illuminate\Support\Collection;
 use BuckhamDuffy\LaravelXeroPracticeManager\Objects\ClientGroupData;
 use BuckhamDuffy\LaravelXeroPracticeManager\Support\AbstractResponse;
 
 class ClientGroupCollectionResponse extends AbstractResponse
 {
-	/**
-	 * @var null|DataCollection<int, ClientGroupData>
-	 */
-	#[DataCollectionOf(ClientGroupData::class)]
-	public ?DataCollection $Groups = null;
+	/** @var null|ClientGroupData[] */
+	public ?array $Groups = null;
 
 	public string $Status;
-
 	public static array $relations = ['Groups'];
 
 	/**
-	 * @return DataCollection<int, ClientGroupData>
+	 * @return Collection<int, ClientGroupData>
 	 */
-	public function getGroups(): DataCollection
+	public function getGroups(): Collection
 	{
-		return $this->Groups ?: ClientData::collection([]);
+		return ClientGroupData::collect($this->Groups ?? [], Collection::class);
 	}
 
 	public function getStatus(): string

@@ -9,7 +9,6 @@ use BuckhamDuffy\LaravelXeroPracticeManager\Responses\ClientCollectionResponse;
 class ClientsListRequest extends AbstractRequest
 {
 	protected Method $method = Method::GET;
-
 	protected ?string $responseModel = ClientCollectionResponse::class;
 	protected string $collectionKey = 'Clients';
 

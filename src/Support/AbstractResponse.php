@@ -14,14 +14,15 @@ abstract class AbstractResponse extends Data
 
 	public static function from(mixed ...$payloads): static
 	{
-		$payload = count($payloads) === 1 ? Arr::first($payloads) : $payloads;
+		$payload = \count($payloads) === 1 ? Arr::first($payloads) : $payloads;
 
-		if (is_array($payload)) {
+		if (\is_array($payload)) {
 			$payload = self::cleanValues($payload);
+
 			return parent::from($payload);
 		}
 
-		if (!is_string($payload)) {
+		if (!\is_string($payload)) {
 			return parent::from(...$payloads);
 		}
 
@@ -37,7 +38,7 @@ abstract class AbstractResponse extends Data
 		}
 
 		foreach (static::$relations as $key) {
-			if (array_key_exists($key, $data) && count($data[$key]) === 1) {
+			if (\array_key_exists($key, $data) && \count($data[$key]) === 1) {
 				$relation = Arr::first($data[$key]);
 				$data[$key] = static::isAssoc($relation) ? array_values($relation) : [$relation];
 			}
@@ -53,14 +54,12 @@ abstract class AbstractResponse extends Data
 	protected static function cleanValues(array $data): array
 	{
 		return array_map(function($item): mixed {
-			if (is_array($item)) {
-				if (count($item) > 0) {
+			if (\is_array($item)) {
+				if (\count($item) > 0) {
 					return static::cleanValues($item);
 				}
 
-				if ($item === []) {
-					return null;
-				}
+				return null;
 			}
 
 			return $item;
@@ -70,7 +69,7 @@ abstract class AbstractResponse extends Data
 	protected static function isAssoc(array $array): bool
 	{
 		foreach ($array as $value) {
-			if (!is_array($value)) {
+			if (!\is_array($value)) {
 				return false;
 			}
 		}

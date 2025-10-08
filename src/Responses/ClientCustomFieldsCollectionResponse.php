@@ -2,27 +2,22 @@
 
 namespace BuckhamDuffy\LaravelXeroPracticeManager\Responses;
 
-use Spatie\LaravelData\DataCollection;
-use Spatie\LaravelData\Attributes\DataCollectionOf;
-use BuckhamDuffy\LaravelXeroPracticeManager\Objects\Client\ClientCustomFieldData;
+use Illuminate\Support\Collection;
 use BuckhamDuffy\LaravelXeroPracticeManager\Support\AbstractResponse;
+use BuckhamDuffy\LaravelXeroPracticeManager\Objects\Client\ClientCustomFieldData;
 
 class ClientCustomFieldsCollectionResponse extends AbstractResponse
 {
-	/**
-	 * @var null|DataCollection<int, ClientCustomFieldData>
-	 */
-	#[DataCollectionOf(ClientCustomFieldData::class)]
-	public ?DataCollection $CustomFields = null;
+	/** @var null|ClientCustomFieldData[] */
+	public ?array $CustomFields = null;
 
 	public static array $relations = ['CustomFields'];
 
 	/**
-	 * @return DataCollection<int, ClientCustomFieldData>
+	 * @return Collection<int, ClientCustomFieldData>
 	 */
-	public function getCustomFields(): DataCollection
+	public function getCustomFields(): Collection
 	{
-		return $this->CustomFields ?: ClientCustomFieldData::collection([]);
+		return ClientCustomFieldData::collect($this->CustomFields ?? [], Collection::class);
 	}
-
 }

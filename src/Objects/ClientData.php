@@ -3,8 +3,7 @@
 namespace BuckhamDuffy\LaravelXeroPracticeManager\Objects;
 
 use Illuminate\Support\Arr;
-use Spatie\LaravelData\DataCollection;
-use Spatie\LaravelData\Attributes\DataCollectionOf;
+use Illuminate\Support\Collection;
 use BuckhamDuffy\LaravelXeroPracticeManager\Support\AbstractResponse;
 use BuckhamDuffy\LaravelXeroPracticeManager\Objects\Client\RelationshipData;
 
@@ -12,7 +11,6 @@ class ClientData extends AbstractResponse
 {
 	public static ?string $unwrap = 'Client';
 	public static array $relations = ['Relationships', 'Groups', 'Notes', 'Contacts'];
-
 	public ?string $UUID = null;
 	public ?string $Name = null;
 	public ?string $Email = null;
@@ -59,14 +57,14 @@ class ClientData extends AbstractResponse
 	public ?RelatedData $AccountManager = null;
 	public ?RelatedData $JobManager = null;
 
-	#[DataCollectionOf(RelatedData::class)]
-	public ?DataCollection $Groups = null;
+	/** @var null|array<int, RelatedData> */
+	public ?array $Groups = null;
 
-	#[DataCollectionOf(RelationshipData::class)]
-	public ?DataCollection $Relationships = null;
+	/** @var null|array<int, RelationshipData> */
+	public ?array $Relationships = null;
 
-	#[DataCollectionOf(RelatedData::class)]
-	public ?DataCollection $Contacts = null;
+	/** @var null|array<int, RelatedData> */
+	public ?array $Contacts = null;
 
 	public function getUUID(): ?string
 	{
@@ -76,6 +74,7 @@ class ClientData extends AbstractResponse
 	public function setUUID(?string $UUID): ClientData
 	{
 		$this->UUID = $UUID;
+
 		return $this;
 	}
 
@@ -87,6 +86,7 @@ class ClientData extends AbstractResponse
 	public function setName(?string $Name): ClientData
 	{
 		$this->Name = $Name;
+
 		return $this;
 	}
 
@@ -98,6 +98,7 @@ class ClientData extends AbstractResponse
 	public function setEmail(?string $Email): ClientData
 	{
 		$this->Email = $Email;
+
 		return $this;
 	}
 
@@ -109,6 +110,7 @@ class ClientData extends AbstractResponse
 	public function setAddress(?string $Address): ClientData
 	{
 		$this->Address = $Address;
+
 		return $this;
 	}
 
@@ -120,6 +122,7 @@ class ClientData extends AbstractResponse
 	public function setCity(?string $City): ClientData
 	{
 		$this->City = $City;
+
 		return $this;
 	}
 
@@ -131,6 +134,7 @@ class ClientData extends AbstractResponse
 	public function setRegion(?string $Region): ClientData
 	{
 		$this->Region = $Region;
+
 		return $this;
 	}
 
@@ -142,6 +146,7 @@ class ClientData extends AbstractResponse
 	public function setPostCode(?string $PostCode): ClientData
 	{
 		$this->PostCode = $PostCode;
+
 		return $this;
 	}
 
@@ -153,6 +158,7 @@ class ClientData extends AbstractResponse
 	public function setCountry(?string $Country): ClientData
 	{
 		$this->Country = $Country;
+
 		return $this;
 	}
 
@@ -164,6 +170,7 @@ class ClientData extends AbstractResponse
 	public function setPostalAddress(?string $PostalAddress): ClientData
 	{
 		$this->PostalAddress = $PostalAddress;
+
 		return $this;
 	}
 
@@ -175,6 +182,7 @@ class ClientData extends AbstractResponse
 	public function setPostalCity(?string $PostalCity): ClientData
 	{
 		$this->PostalCity = $PostalCity;
+
 		return $this;
 	}
 
@@ -186,6 +194,7 @@ class ClientData extends AbstractResponse
 	public function setPostalRegion(?string $PostalRegion): ClientData
 	{
 		$this->PostalRegion = $PostalRegion;
+
 		return $this;
 	}
 
@@ -197,6 +206,7 @@ class ClientData extends AbstractResponse
 	public function setPostalPostCode(?string $PostalPostCode): ClientData
 	{
 		$this->PostalPostCode = $PostalPostCode;
+
 		return $this;
 	}
 
@@ -208,6 +218,7 @@ class ClientData extends AbstractResponse
 	public function setPostalCountry(?string $PostalCountry): ClientData
 	{
 		$this->PostalCountry = $PostalCountry;
+
 		return $this;
 	}
 
@@ -219,6 +230,7 @@ class ClientData extends AbstractResponse
 	public function setPhone(?string $Phone): ClientData
 	{
 		$this->Phone = $Phone;
+
 		return $this;
 	}
 
@@ -230,6 +242,7 @@ class ClientData extends AbstractResponse
 	public function setFax(?string $Fax): ClientData
 	{
 		$this->Fax = $Fax;
+
 		return $this;
 	}
 
@@ -241,6 +254,7 @@ class ClientData extends AbstractResponse
 	public function setWebsite(?string $Website): ClientData
 	{
 		$this->Website = $Website;
+
 		return $this;
 	}
 
@@ -252,6 +266,7 @@ class ClientData extends AbstractResponse
 	public function setExportCode(?string $ExportCode): ClientData
 	{
 		$this->ExportCode = $ExportCode;
+
 		return $this;
 	}
 
@@ -263,6 +278,7 @@ class ClientData extends AbstractResponse
 	public function setFirstName(?string $FirstName): ClientData
 	{
 		$this->FirstName = $FirstName;
+
 		return $this;
 	}
 
@@ -274,6 +290,7 @@ class ClientData extends AbstractResponse
 	public function setLastName(?string $LastName): ClientData
 	{
 		$this->LastName = $LastName;
+
 		return $this;
 	}
 
@@ -285,6 +302,7 @@ class ClientData extends AbstractResponse
 	public function setOtherName(?string $OtherName): ClientData
 	{
 		$this->OtherName = $OtherName;
+
 		return $this;
 	}
 
@@ -296,6 +314,7 @@ class ClientData extends AbstractResponse
 	public function setDateOfBirth(?string $DateOfBirth): ClientData
 	{
 		$this->DateOfBirth = $DateOfBirth;
+
 		return $this;
 	}
 
@@ -307,6 +326,7 @@ class ClientData extends AbstractResponse
 	public function setIsProspect(?string $IsProspect): ClientData
 	{
 		$this->IsProspect = $IsProspect;
+
 		return $this;
 	}
 
@@ -318,6 +338,7 @@ class ClientData extends AbstractResponse
 	public function setTaxNumber(?string $TaxNumber): ClientData
 	{
 		$this->TaxNumber = $TaxNumber;
+
 		return $this;
 	}
 
@@ -329,6 +350,7 @@ class ClientData extends AbstractResponse
 	public function setCompanyNumber(?string $CompanyNumber): ClientData
 	{
 		$this->CompanyNumber = $CompanyNumber;
+
 		return $this;
 	}
 
@@ -340,6 +362,7 @@ class ClientData extends AbstractResponse
 	public function setBusinessNumber(?string $BusinessNumber): ClientData
 	{
 		$this->BusinessNumber = $BusinessNumber;
+
 		return $this;
 	}
 
@@ -351,6 +374,7 @@ class ClientData extends AbstractResponse
 	public function setBusinessStructure(?string $BusinessStructure): ClientData
 	{
 		$this->BusinessStructure = $BusinessStructure;
+
 		return $this;
 	}
 
@@ -362,6 +386,7 @@ class ClientData extends AbstractResponse
 	public function setBalanceMonth(?string $BalanceMonth): ClientData
 	{
 		$this->BalanceMonth = $BalanceMonth;
+
 		return $this;
 	}
 
@@ -373,6 +398,7 @@ class ClientData extends AbstractResponse
 	public function setPrepareGST(?string $PrepareGST): ClientData
 	{
 		$this->PrepareGST = $PrepareGST;
+
 		return $this;
 	}
 
@@ -384,6 +410,7 @@ class ClientData extends AbstractResponse
 	public function setGSTRegistered(?string $GSTRegistered): ClientData
 	{
 		$this->GSTRegistered = $GSTRegistered;
+
 		return $this;
 	}
 
@@ -395,6 +422,7 @@ class ClientData extends AbstractResponse
 	public function setGSTPeriod(?string $GSTPeriod): ClientData
 	{
 		$this->GSTPeriod = $GSTPeriod;
+
 		return $this;
 	}
 
@@ -406,6 +434,7 @@ class ClientData extends AbstractResponse
 	public function setGSTBasis(?string $GSTBasis): ClientData
 	{
 		$this->GSTBasis = $GSTBasis;
+
 		return $this;
 	}
 
@@ -417,6 +446,7 @@ class ClientData extends AbstractResponse
 	public function setProvisionalTaxBasis(?string $ProvisionalTaxBasis): ClientData
 	{
 		$this->ProvisionalTaxBasis = $ProvisionalTaxBasis;
+
 		return $this;
 	}
 
@@ -428,6 +458,7 @@ class ClientData extends AbstractResponse
 	public function setSignedTaxAuthority(?string $SignedTaxAuthority): ClientData
 	{
 		$this->SignedTaxAuthority = $SignedTaxAuthority;
+
 		return $this;
 	}
 
@@ -439,6 +470,7 @@ class ClientData extends AbstractResponse
 	public function setTaxAgent(?string $TaxAgent): ClientData
 	{
 		$this->TaxAgent = $TaxAgent;
+
 		return $this;
 	}
 
@@ -450,6 +482,7 @@ class ClientData extends AbstractResponse
 	public function setAgencyStatus(?string $AgencyStatus): ClientData
 	{
 		$this->AgencyStatus = $AgencyStatus;
+
 		return $this;
 	}
 
@@ -461,6 +494,7 @@ class ClientData extends AbstractResponse
 	public function setReturnType(?string $ReturnType): ClientData
 	{
 		$this->ReturnType = $ReturnType;
+
 		return $this;
 	}
 
@@ -472,6 +506,7 @@ class ClientData extends AbstractResponse
 	public function setPrepareActivityStatement(?string $PrepareActivityStatement): ClientData
 	{
 		$this->PrepareActivityStatement = $PrepareActivityStatement;
+
 		return $this;
 	}
 
@@ -483,45 +518,52 @@ class ClientData extends AbstractResponse
 	public function setPrepareTaxReturn(?string $PrepareTaxReturn): ClientData
 	{
 		$this->PrepareTaxReturn = $PrepareTaxReturn;
+
 		return $this;
 	}
 
 	/**
-	 * @return DataCollection<RelatedData>
+	 * @return Collection<int, RelatedData>
 	 */
-	public function getGroups(): DataCollection
+	public function getGroups(): Collection
 	{
-		return $this->Groups ?: RelatedData::collection([]);
+		return RelatedData::collect($this->Groups ?? [], Collection::class);
 	}
 
-	public function setGroups(?DataCollection $Groups): ClientData
+	public function setGroups(Collection $Groups): ClientData
 	{
-		$this->Groups = $Groups;
+		$this->Groups = $Groups->all();
+
 		return $this;
 	}
 
 	/**
-	 * @return DataCollection<int, RelationshipData>
+	 * @return Collection<int, RelationshipData>
 	 */
-	public function getRelationships(): DataCollection
+	public function getRelationships(): Collection
 	{
-		return $this->Relationships ?: RelationshipData::collection([]);
+		return RelationshipData::collect($this->Relationships ?? [], Collection::class);
 	}
 
-	public function setRelationships(?DataCollection $Relationships): ClientData
+	public function setRelationships(Collection $Relationships): ClientData
 	{
-		$this->Relationships = $Relationships;
+		$this->Relationships = $Relationships->all();
+
 		return $this;
 	}
 
-	public function getContacts(): ?DataCollection
+	/**
+	 * @return Collection<int, RelatedData>
+	 */
+	public function getContacts(): Collection
 	{
-		return $this->Contacts;
+		return RelatedData::collect($this->Contacts ?? [], Collection::class);
 	}
 
-	public function setContacts(?DataCollection $Contacts): ClientData
+	public function setContacts(Collection $Contacts): ClientData
 	{
-		$this->Contacts = $Contacts;
+		$this->Contacts = $Contacts->all();
+
 		return $this;
 	}
 
@@ -533,6 +575,7 @@ class ClientData extends AbstractResponse
 	public function setReferralSource(?string $ReferralSource): ClientData
 	{
 		$this->ReferralSource = $ReferralSource;
+
 		return $this;
 	}
 
@@ -544,6 +587,7 @@ class ClientData extends AbstractResponse
 	public function setIsDeleted(?string $IsDeleted): ClientData
 	{
 		$this->IsDeleted = $IsDeleted;
+
 		return $this;
 	}
 
@@ -555,6 +599,7 @@ class ClientData extends AbstractResponse
 	public function setIsArchived(?string $IsArchived): ClientData
 	{
 		$this->IsArchived = $IsArchived;
+
 		return $this;
 	}
 

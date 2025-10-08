@@ -11,7 +11,6 @@ use BuckhamDuffy\LaravelXeroPracticeManager\Responses\JobCollectionResponse;
 class JobsListRequest extends AbstractRequest
 {
 	protected Method $method = Method::GET;
-
 	protected ?string $responseModel = JobCollectionResponse::class;
 	protected string $collectionKey = 'Jobs';
 

@@ -2,8 +2,7 @@
 
 namespace BuckhamDuffy\LaravelXeroPracticeManager\Objects;
 
-use Spatie\LaravelData\DataCollection;
-use Spatie\LaravelData\Attributes\DataCollectionOf;
+use Illuminate\Support\Collection;
 use BuckhamDuffy\LaravelXeroPracticeManager\Objects\Job\NoteData;
 use BuckhamDuffy\LaravelXeroPracticeManager\Objects\Job\TaskData;
 use BuckhamDuffy\LaravelXeroPracticeManager\Support\AbstractResponse;
@@ -12,9 +11,7 @@ use BuckhamDuffy\LaravelXeroPracticeManager\Objects\Job\MilestoneData;
 class JobData extends AbstractResponse
 {
 	public static ?string $unwrap = 'Job';
-
 	public static array $relations = ['Assigned', 'Tasks', 'Milestones'];
-
 	public ?string $UUID = null;
 	public ?string $ID = null;
 	public ?string $Name = null;
@@ -26,23 +23,22 @@ class JobData extends AbstractResponse
 	public ?string $StartDate = null;
 	public ?string $DueDate = null;
 	public ?string $CompletedDate = null;
-
 	public ?RelatedData $Client = null;
 	public ?RelatedData $Contact = null;
 	public ?RelatedData $Manager = null;
 	public ?RelatedData $Partner = null;
 
-	#[DataCollectionOf(RelatedData::class)]
-	public ?DataCollection $Assigned = null;
+	/** @var null|RelatedData[] */
+	public ?array $Assigned = null;
 
-	#[DataCollectionOf(TaskData::class)]
-	public ?DataCollection $Tasks = null;
+	/** @var null|TaskData[] */
+	public ?array $Tasks = null;
 
-	#[DataCollectionOf(MilestoneData::class)]
-	public ?DataCollection $Milestones = null;
+	/** @var null|MilestoneData[] */
+	public ?array $Milestones = null;
 
-	#[DataCollectionOf(NoteData::class)]
-	public ?DataCollection $Notes = null;
+	/** @var null|NoteData[] */
+	public ?array $Notes = null;
 
 	public function getUUID(): ?string
 	{
@@ -119,23 +115,35 @@ class JobData extends AbstractResponse
 		return $this->Partner;
 	}
 
-	public function getAssigned(): ?DataCollection
+	/**
+	 * @return Collection<int, RelatedData>
+	 */
+	public function getAssigned(): Collection
 	{
-		return $this->Assigned;
+		return RelatedData::collect($this->Assigned ?? [], Collection::class);
 	}
 
-	public function getTasks(): ?DataCollection
+	/**
+	 * @return Collection<int, TaskData>
+	 */
+	public function getTasks(): Collection
 	{
-		return $this->Tasks;
+		return TaskData::collect($this->Tasks ?? [], Collection::class);
 	}
 
-	public function getMilestones(): ?DataCollection
+	/**
+	 * @return Collection<int, MilestoneData>
+	 */
+	public function getMilestones(): Collection
 	{
-		return $this->Milestones;
+		return MilestoneData::collect($this->Milestones ?? [], Collection::class);
 	}
 
-	public function getNotes(): ?DataCollection
+	/**
+	 * @return Collection<int, NoteData>
+	 */
+	public function getNotes(): Collection
 	{
-		return $this->Notes;
+		return NoteData::collect($this->Notes ?? [], Collection::class);
 	}
 }

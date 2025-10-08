@@ -11,7 +11,6 @@ use BuckhamDuffy\LaravelXeroPracticeManager\XeroPracticeManagerConnector;
 class ClientUpdateRequest extends AbstractRequest
 {
 	protected Method $method = Method::PUT;
-
 	protected ?string $responseModel = ClientData::class;
 
 	public function __construct(XeroPracticeManagerConnector $connector, private readonly ClientData $clientData)

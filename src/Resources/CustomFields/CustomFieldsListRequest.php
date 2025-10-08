@@ -10,7 +10,6 @@ use BuckhamDuffy\LaravelXeroPracticeManager\Responses\CustomFieldCollectionRespo
 class CustomFieldsListRequest extends AbstractRequest
 {
 	protected Method $method = Method::GET;
-
 	protected ?string $responseModel = CustomFieldCollectionResponse::class;
 	protected string $collectionKey = 'CustomFieldDefinitions';
 
