@@ -3,6 +3,18 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v3.0.0 - 2025-10-08
+#### CI
+- fix pipeline - (b8cfdad) - Aaron Florey
+#### Chore
+- update .editorconfig - (e711bc7) - BuckhamBot
+#### Features
+- upgrade laravel/data packages - (c0957b0) - Aaron Florey
+#### Tests
+- fix php version - (0ffca99) - Aaron Florey
+
+- - -
+
 ## v2.1.1 - 2025-04-30
 #### Bug Fixes
 - setup default cache value - (00264c5) - Alex Buckham
