@@ -32,7 +32,7 @@
         "spatie/array-to-xml": "^3.2",
         "spatie/laravel-data": "^4.0",
         "spatie/laravel-package-tools": "^1.92.7",
-        "xeroapi/xero-php-oauth2": "^2.21"
+        "xeroapi/xero-php-oauth2": "^10.0"
     },
     "require-dev": {
         "buckhamduffy/coding-standards": "^7.0",
