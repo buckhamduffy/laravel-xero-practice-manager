@@ -3,6 +3,12 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v3.0.3 - 2026-01-24
+#### Bug Fixes
+- revert to null defaults - (41526f7) - Alex Buckham
+
+- - -
+
 ## v3.0.2 - 2026-01-24
 #### Bug Fixes
 - migrate phpunit config - (0ca7cc1) - Alex Buckham
