@@ -159,7 +159,7 @@ it('can deserialize ClientCollection with multiple Clients', function () {
     expect($secondClient->getReferralSource())->toBeEmpty();
     expect($secondClient->getExportCode())->toBeEmpty();
     expect($secondClient->getIsProspect())->toBeEmpty();
-    expect($secondClient->getIsArchived())->toBe('No');
-    expect($secondClient->getIsDeleted())->toBe('No');
+    expect($secondClient->getIsArchived())->toBeEmpty();
+    expect($secondClient->getIsDeleted())->toBeEmpty();
     expect($secondClient->getContacts())->toBeEmpty();
 });
