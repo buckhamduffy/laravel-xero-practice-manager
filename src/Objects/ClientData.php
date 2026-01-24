@@ -36,24 +36,24 @@ class ClientData extends AbstractResponse
 	public ?string $Gender = null;
 	public ?string $ReferralSource = null;
 	public ?string $IsProspect = null;
-	public ?string $IsDeleted = null;
-	public ?string $IsArchived = null;
+	public string $IsDeleted = 'No';
+	public string $IsArchived = 'No';
 	public ?string $TaxNumber = null;
 	public ?string $CompanyNumber = null;
 	public ?string $BusinessNumber = null;
 	public ?string $BusinessStructure = null;
-	public ?string $BalanceMonth = null;
-	public ?string $PrepareGST = null;
-	public ?string $GSTRegistered = null;
+	public ?int $BalanceMonth = null;
+	public ?string $PrepareGST = 'No';
+	public string $GSTRegistered = 'No';
 	public ?string $GSTPeriod = null;
 	public ?string $GSTBasis = null;
 	public ?string $ProvisionalTaxBasis = null;
-	public ?string $SignedTaxAuthority = null;
+	public ?string $SignedTaxAuthority = 'No';
 	public ?string $TaxAgent = null;
-	public ?string $AgencyStatus = null;
+	public string $AgencyStatus = 'Unlinked';
 	public ?string $ReturnType = null;
-	public ?string $PrepareActivityStatement = null;
-	public ?string $PrepareTaxReturn = null;
+	public string $PrepareActivityStatement = 'No';
+	public string $PrepareTaxReturn = 'No';
 	public ?RelatedData $AccountManager = null;
 	public ?RelatedData $JobManager = null;
 
@@ -378,36 +378,36 @@ class ClientData extends AbstractResponse
 		return $this;
 	}
 
-	public function getBalanceMonth(): ?string
+	public function getBalanceMonth(): int
 	{
 		return $this->BalanceMonth;
 	}
 
-	public function setBalanceMonth(?string $BalanceMonth): ClientData
+	public function setBalanceMonth(int $BalanceMonth): ClientData
 	{
 		$this->BalanceMonth = $BalanceMonth;
 
 		return $this;
 	}
 
-	public function getPrepareGST(): ?string
+	public function getPrepareGST(): string
 	{
 		return $this->PrepareGST;
 	}
 
-	public function setPrepareGST(?string $PrepareGST): ClientData
+	public function setPrepareGST(string $PrepareGST): ClientData
 	{
 		$this->PrepareGST = $PrepareGST;
 
 		return $this;
 	}
 
-	public function getGSTRegistered(): ?string
+	public function getGSTRegistered(): string
 	{
 		return $this->GSTRegistered;
 	}
 
-	public function setGSTRegistered(?string $GSTRegistered): ClientData
+	public function setGSTRegistered(string $GSTRegistered): ClientData
 	{
 		$this->GSTRegistered = $GSTRegistered;
 
@@ -450,12 +450,12 @@ class ClientData extends AbstractResponse
 		return $this;
 	}
 
-	public function getSignedTaxAuthority(): ?string
+	public function getSignedTaxAuthority(): string
 	{
 		return $this->SignedTaxAuthority;
 	}
 
-	public function setSignedTaxAuthority(?string $SignedTaxAuthority): ClientData
+	public function setSignedTaxAuthority(string $SignedTaxAuthority): ClientData
 	{
 		$this->SignedTaxAuthority = $SignedTaxAuthority;
 
@@ -474,48 +474,48 @@ class ClientData extends AbstractResponse
 		return $this;
 	}
 
-	public function getAgencyStatus(): ?string
+	public function getAgencyStatus(): string
 	{
 		return $this->AgencyStatus;
 	}
 
-	public function setAgencyStatus(?string $AgencyStatus): ClientData
+	public function setAgencyStatus(string $AgencyStatus): ClientData
 	{
 		$this->AgencyStatus = $AgencyStatus;
 
 		return $this;
 	}
 
-	public function getReturnType(): ?string
+	public function getReturnType(): string
 	{
 		return $this->ReturnType;
 	}
 
-	public function setReturnType(?string $ReturnType): ClientData
+	public function setReturnType(string $ReturnType): ClientData
 	{
 		$this->ReturnType = $ReturnType;
 
 		return $this;
 	}
 
-	public function getPrepareActivityStatement(): ?string
+	public function getPrepareActivityStatement(): string
 	{
 		return $this->PrepareActivityStatement;
 	}
 
-	public function setPrepareActivityStatement(?string $PrepareActivityStatement): ClientData
+	public function setPrepareActivityStatement(string $PrepareActivityStatement): ClientData
 	{
 		$this->PrepareActivityStatement = $PrepareActivityStatement;
 
 		return $this;
 	}
 
-	public function getPrepareTaxReturn(): ?string
+	public function getPrepareTaxReturn(): string
 	{
 		return $this->PrepareTaxReturn;
 	}
 
-	public function setPrepareTaxReturn(?string $PrepareTaxReturn): ClientData
+	public function setPrepareTaxReturn(string $PrepareTaxReturn): ClientData
 	{
 		$this->PrepareTaxReturn = $PrepareTaxReturn;
 
@@ -579,24 +579,24 @@ class ClientData extends AbstractResponse
 		return $this;
 	}
 
-	public function getIsDeleted(): ?string
+	public function getIsDeleted(): string
 	{
 		return $this->IsDeleted;
 	}
 
-	public function setIsDeleted(?string $IsDeleted): ClientData
+	public function setIsDeleted(string $IsDeleted): ClientData
 	{
 		$this->IsDeleted = $IsDeleted;
 
 		return $this;
 	}
 
-	public function getIsArchived(): ?string
+	public function getIsArchived(): string
 	{
 		return $this->IsArchived;
 	}
 
-	public function setIsArchived(?string $IsArchived): ClientData
+	public function setIsArchived(string $IsArchived): ClientData
 	{
 		$this->IsArchived = $IsArchived;
 
