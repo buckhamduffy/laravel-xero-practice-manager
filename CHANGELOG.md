@@ -3,6 +3,14 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v3.0.2 - 2026-01-24
+#### Bug Fixes
+- migrate phpunit config - (0ca7cc1) - Alex Buckham
+#### Tests
+- fix tests - (3292d48) - Alex Buckham
+
+- - -
+
 ## v3.0.1 - 2026-01-24
 #### Bug Fixes
 - set ClientData to persist Xero defaults instead of allowing null values - (f5cfee9) - Alex Buckham
