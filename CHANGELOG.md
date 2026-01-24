@@ -3,6 +3,12 @@
 All notable changes to `LaravelXeroPracticeManager` will be documented in this file.
 
 - - -
+## v3.0.1 - 2026-01-24
+#### Bug Fixes
+- set ClientData to persist Xero defaults instead of allowing null values - (f5cfee9) - Alex Buckham
+
+- - -
+
 ## v3.0.0 - 2025-10-08
 #### CI
 - fix pipeline - (b8cfdad) - Aaron Florey
